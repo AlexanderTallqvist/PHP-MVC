@@ -2,9 +2,9 @@
 
 /**
  * @file
- * The Core App Class
+ * The Core App Class.
  * Creates the URL and loads the core controller
- * URL Format: /controller/method/parameter
+ * URL Format: /controller/method/parameter.
  */
 
 class Core {
@@ -14,10 +14,10 @@ class Core {
    * Fetches URL data using getURL(), and uses said data
    * to load controllers and their methods.
    */
-  function __construct() {
+   function __construct() {
     $url = $this->getUrl();
 
-    # Check if controller exists
+    # Check if controller exists in the first URL parameter
     if (file_exists("../app/controllers/" . ucwords($url[0]) . ".php")) {
       $this->currentController = ucwords($url[0]);
       unset($url[0]);
@@ -26,6 +26,24 @@ class Core {
     # Instanciate our controller class
     require_once("../app/controllers/" . $this->currentController . ".php");
     $this->currentController = new $this->currentController;
+
+    # Check if a method exists in the second URL parameter
+    if (isset($url[1])) {
+      if (method_exists($this->currentController, $url[1])) {
+        $this->currentMethod = $url[1];
+        unset($url[1]);
+      }
+    }
+
+    # Fetch URL parameters for the requested method
+    $this->parameters = $url ? array_values($url) : [];
+
+    # Call class method with parameters
+    call_user_func_array([
+      $this->currentController,
+      $this->currentMethod],
+      $this->parameters
+    );
   }
 
   /**
@@ -41,7 +59,7 @@ class Core {
   protected $currentMethod = "index";
 
   /**
-   * The URL parameters.
+   * The URL parameters for the requested method.
    * Default value: []
    */
   protected $parameters = [];
@@ -62,6 +80,4 @@ class Core {
       return $url;
     }
   }
-
-
 }
