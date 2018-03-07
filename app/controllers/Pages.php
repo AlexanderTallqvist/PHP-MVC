@@ -22,7 +22,9 @@ class Pages extends Controller {
    * is specified in the URL.
    */
   public function index() {
-    $data = ["title" => "Welcome"];
+    $data = [
+      "title" => "Welcome"
+    ];
     $this->view("pages/index", $data);
   }
 
@@ -30,6 +32,9 @@ class Pages extends Controller {
    * The about method.
    */
   public function about() {
-    $this->view("pages/about", []);
+    $data = [
+      "title" => "About Us"
+    ];
+    $this->view("pages/about", $data);
   }
 }
