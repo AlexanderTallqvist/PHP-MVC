@@ -13,7 +13,7 @@ class Pages extends Controller {
    * The class constructor.
    */
   function __construct() {
-    $this->postModel = $this->model("Post");
+
   }
 
   /**
@@ -22,13 +22,10 @@ class Pages extends Controller {
    * is specified in the URL.
    */
   public function index() {
-    $posts = $this->postModel->getPosts();
 
     $data = [
       "title" => "Welcome",
-      "posts" => $posts,
     ];
-
     $this->view("pages/index", $data);
   }
 
