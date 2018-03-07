@@ -13,12 +13,12 @@ class Pages extends Controller {
    * The class constructor.
    */
   function __construct() {
-
+    $this->postModel = $this->model("Post");
   }
 
   /**
    * The index method.
-   * Gets called by default if no other methods
+   * Gets called by default if no other method
    * is specified in the URL.
    */
   public function index() {
