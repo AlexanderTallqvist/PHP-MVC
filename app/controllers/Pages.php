@@ -24,7 +24,7 @@ class Pages extends Controller {
   public function index() {
 
     $data = [
-      "title" => "Welcome",
+      "title" => "PHP MVC PROJECT",
     ];
     $this->view("pages/index", $data);
   }
