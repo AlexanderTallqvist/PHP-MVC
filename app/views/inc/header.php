@@ -7,4 +7,6 @@
   <link rel="stylesheet" href="<?php echo URLROOT; ?>/css/styles.css">
   <title><?php echo SITENAME; ?></title>
 </head>
+<?php require APPROOT . "/views/inc/navigation.php"; ?>
 <body>
+<div class="layout-container">

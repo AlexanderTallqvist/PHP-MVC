@@ -1,0 +1,25 @@
+
+// Main nav-bar styles
+.main-navigation {
+  max-width: 80%;
+  margin: 20px auto;
+  width: 100%;
+
+  &--link-container {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0;
+
+    &__link {
+      text-decoration: none;
+      color: green;
+      margin: 0 10px;
+      text-transform: uppercase;
+
+      &:hover {
+        color: darken(green, 50);
+      }
+    }
+  }
+}

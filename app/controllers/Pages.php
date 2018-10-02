@@ -25,6 +25,7 @@ class Pages extends Controller {
 
     $data = [
       "title" => "PHP MVC PROJECT",
+      'description' => "This is our description",
     ];
     $this->view("pages/index", $data);
   }

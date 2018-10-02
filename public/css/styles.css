@@ -1,0 +1,21 @@
+.layout-container {
+  max-width: 80%;
+  width: 100%;
+  margin: 0 auto; }
+
+.main-navigation {
+  max-width: 80%;
+  margin: 20px auto;
+  width: 100%; }
+  .main-navigation--link-container {
+    list-style: none;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0; }
+    .main-navigation--link-container__link {
+      text-decoration: none;
+      color: green;
+      margin: 0 10px;
+      text-transform: uppercase; }
+      .main-navigation--link-container__link:hover {
+        color: black; }
