@@ -11,7 +11,7 @@ class Users extends Controller {
    * The class constructor.
    */
   function __construct() {
-
+    $this->userModel = $this->model('User');
   }
 
   /**
@@ -42,6 +42,10 @@ class Users extends Controller {
       }
       if (empty($data['email'])) {
         $data['email_error'] = "Plase enter an email.";
+      } else {
+        if ($this->userModel->findUserByemail($data['email'])) {
+          $data['email_error'] = "The email is already in use.";
+        }
       }
       if (empty($data['password'])) {
         $data['password_error'] = "Plase enter a password.";
@@ -59,7 +63,14 @@ class Users extends Controller {
       // Make sure we have no errors
       if (empty($data['name_error']) && empty($data['email_error'])
       && empty($data['password_error']) && empty($data['confirm_password_error'])) {
-        die("SUCCESS");
+
+        $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        if ($this->userModel->registerUser($data)) {
+          header('location: ' . URLROOT . '/user/login');
+        } else {
+          die("Something went wrong.");
+        }
+
       } else {
         $this->view('users/register', $data);
       }
