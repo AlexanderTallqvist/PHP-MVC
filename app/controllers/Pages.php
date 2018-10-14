@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Controller;
+use App\Libraries\View;
 
 /**
  * @file
@@ -11,7 +11,8 @@ use App\Libraries\Controller;
  * and gets called if no URL parameters for a controller are set.
  */
 
-class Pages extends Controller {
+class Pages {
+
 
   /**
    * The class constructor.
@@ -31,7 +32,8 @@ class Pages extends Controller {
       "title" => "PHP MVC PROJECT",
       'description' => "This is our description",
     ];
-    $this->view("pages/index", $data);
+    //$test = new View;
+    View::render("pages/index", $data);
   }
 
   /**
@@ -41,6 +43,6 @@ class Pages extends Controller {
     $data = [
       "title" => "About Us"
     ];
-    $this->view("pages/about", $data);
+    View::render("pages/about", $data);
   }
 }

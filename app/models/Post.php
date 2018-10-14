@@ -2,24 +2,14 @@
 
 namespace App\Models;
 
+use App\Libraries\Model;
+
 /**
  * @file
  * The Post Model.
  */
 
-class Post {
-
-  /**
-   * The class constructor
-   */
-   function __construct() {
-     $this->db = new Database;
-   }
-
-  /**
-   * An instance of our database connection.
-   */
-  private $db;
+class Post extends Model {
 
   /**
    * Example function for using the DB class

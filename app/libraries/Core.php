@@ -2,9 +2,6 @@
 
 namespace App\Libraries;
 
-use App\Controllers\Pages;
-use App\Controllers\Users;
-
 /**
  * @file
  * The Core App Class.

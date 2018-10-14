@@ -2,20 +2,21 @@
 
 namespace App\Controllers;
 
-use App\Libraries\Controller;
+use App\Libraries\View;
+use App\Models\User;
 
 /**
  * @file
  * The Users Controller.
  */
 
-class Users extends Controller {
+class Users {
 
   /**
    * The class constructor.
    */
   function __construct() {
-    $this->userModel = $this->model('User');
+    $this->userModel = new User;
   }
 
   /**
@@ -76,7 +77,7 @@ class Users extends Controller {
         }
 
       } else {
-        $this->view('users/register', $data);
+        View::render('users/register', $data);
       }
 
     } else {
@@ -92,7 +93,7 @@ class Users extends Controller {
       ];
 
       // Load the view
-      $this->view("users/register", $data);
+      View::render("users/register", $data);
     }
   }
 
@@ -128,7 +129,7 @@ class Users extends Controller {
       && empty($data['password_error']) && empty($data['confirm_password_error'])) {
         die("SUCCESS");
       } else {
-        $this->view('users/login', $data);
+        View::render('users/login', $data);
       }
 
     } else {
@@ -140,7 +141,7 @@ class Users extends Controller {
       ];
 
       // Load the view
-      $this->view("users/login", $data);
+      View::render("users/login", $data);
     }
   }
 

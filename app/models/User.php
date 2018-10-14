@@ -2,26 +2,14 @@
 
 namespace App\Models;
 
-use App\Libraries\Database;
+use App\Libraries\Model;
 
 /**
  * @file
  * The User Model.
  */
 
-class User {
-
-  /**
-   * The class constructor
-   */
-   function __construct() {
-     $this->db = new Database;
-   }
-
-  /**
-   * An instance of our database connection.
-   */
-  private $db;
+class User extends Model {
 
   /**
    * Find user by email
