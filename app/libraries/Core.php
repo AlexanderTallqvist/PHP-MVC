@@ -2,6 +2,7 @@
 
 namespace App\Libraries;
 
+
 /**
  * @file
  * The Core App Class.
