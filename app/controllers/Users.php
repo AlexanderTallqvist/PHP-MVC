@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Libraries\View;
 use App\Models\User;
+use App\Helpers\Redirect;
+use App\Helpers\Messages;
 
 /**
  * @file
@@ -48,8 +50,8 @@ class Users {
       && empty($data['password_error']) && empty($data['confirm_password_error'])) {
 
         if ($this->userModel->registerUser($data)) {
-          header('location: ' . URLROOT . '/user/login');
-
+          Messages::flashMessage('register_success', 'You are registered and can now log in.');
+          Redirect::transfer('users/login');
         } else {
           die("Something went wrong.");
         }
@@ -93,9 +95,16 @@ class Users {
       $data['email_error'] = $this->userModel->validateEmail($data['email']);
       $data['password_error'] = $this->userModel->validatePassword($data['password']);
 
-      // Make sure we have no errors
+
       if (empty($data['email_error']) && empty($data['password_error'])) {
-        die("SUCCESS");
+        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+        if ($loggedInUser) {
+          $this->userModel->createUserSession($loggedInUser);
+          Redirect::transfer('pages/index');
+        } else {
+          $data['password_error'] = 'The email and password do not match.';
+          View::render('users/login', $data);
+        }
       } else {
         View::render('users/login', $data);
       }
@@ -109,6 +118,15 @@ class Users {
       ];
       View::render("users/login", $data);
     }
+  }
+
+
+  public function logout() {
+    unset($_SESSION['user_id']);
+    unset($_SESSION['user_email']);
+    unset($_SESSION['user_name']);
+    session_destroy();
+    Redirect::transfer('users/login');
   }
 
 

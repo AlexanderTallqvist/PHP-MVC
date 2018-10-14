@@ -11,16 +11,51 @@ use App\Libraries\Model;
 
 class User extends Model {
 
+
+  public function createUserSession($user) {
+    $_SESSION['user_id'] = $user->id;
+    $_SESSION['user_email'] = $user->email;
+    $_SESSION['user_name'] = $user->name;
+  }
+
+
+  public function isLoggedIn() {
+    if (isset($_SESSION['user_id'])) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+  /**
+   * Login user
+   */
+  public function login($email, $password) {
+    $row = self::findUserByEmail($email);
+
+    if ($row) {
+      $hashed_password = $row->password;
+      if (password_verify($password, $hashed_password)) {
+        return $row;
+      } else {
+        return false;
+      }
+    } else {
+      return false;
+    }
+  }
+
   /**
    * Find user by email
    */
   public function findUserByEmail($email) {
     $this->db->query("SELECT * FROM users WHERE email = :email");
     $this->db->bind(":email", $email);
-    $this->db->singleResult();
+    $row = $this->db->singleResult();
 
     if ($this->db->rowCount() > 0) {
-      return true;
+      return $row;
     } else {
       return false;
     }
