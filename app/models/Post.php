@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Models;
+
 /**
  * @file
  * The Post Model.

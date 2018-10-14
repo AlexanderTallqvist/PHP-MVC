@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Libraries;
+
 /**
  * @file
  * The Base Controller.
@@ -19,10 +21,11 @@ class Controller {
  * An instance of the requested model class.
  */
   public function model($model) {
-    require_once("../app/models/" . $model . ".php");
+    $model = "App\Models\\" . $model;
+    //require_once("../App/Models/" . $model . ".php");
 
     # Instantiate the model
-    return new $model();
+    return new $model;
   }
 
  /**
@@ -35,8 +38,8 @@ class Controller {
   * An array containing data for our view template
   */
   public function view($view, $data) {
-    if (file_exists("../app/views/" . $view . ".php")) {
-      require_once("../app/views/" . $view . ".php");
+    if (file_exists("../App/views/" . $view . ".php")) {
+      require_once("../App/views/" . $view . ".php");
     } else {
       die("View does not exist.");
     }

@@ -4,4 +4,4 @@
 require_once "../app/bootstrap.php";
 
 # INITIALIZE THE CORE LIBRARY
-$init = new Core;
+$init = new App\Libraries\Core;

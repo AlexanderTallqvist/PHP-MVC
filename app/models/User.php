@@ -1,5 +1,9 @@
 <?php
 
+namespace App\Models;
+
+use App\Libraries\Database;
+
 /**
  * @file
  * The User Model.

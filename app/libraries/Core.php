@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Libraries;
+
+use App\Controllers\Pages;
+use App\Controllers\Users;
+
 /**
  * @file
  * The Core App Class.
@@ -18,14 +23,14 @@ class Core {
     $url = $this->getUrl();
 
     # Check if controller exists in the first URL parameter
-    if (file_exists("../app/controllers/" . ucwords($url[0]) . ".php")) {
+    if (file_exists("../App/Controllers/" . ucwords($url[0]) . ".php")) {
       $this->currentController = ucwords($url[0]);
       unset($url[0]);
     }
 
     # Instanciate our controller class
-    require_once("../app/controllers/" . $this->currentController . ".php");
-    $this->currentController = new $this->currentController;
+    $controller = "App\Controllers\\" . $this->currentController;
+    $this->currentController = new $controller;
 
     # Check if a method exists in the second URL parameter
     if (isset($url[1])) {
