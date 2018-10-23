@@ -25,6 +25,7 @@ class Posts {
     }
 
     $this->postModel = new Post;
+    $this->userModel = new User;
   }
 
   /**
@@ -81,6 +82,25 @@ class Posts {
       ];
 
       View::render("posts/add", $data);
+    }
+  }
+
+  public function show($post_id) {
+
+    $post = $this->postModel->getPostById($post_id);
+
+    if ($post) {
+      $user = $this->userModel->findUserById($post->user_id);
+
+      $data = [
+        'post' => $post,
+        'user' => $user
+      ];
+      View::render("posts/show", $data);
+
+    } else {
+      Messages::flashMessage('post_not_found', 'Post not found.');
+      Redirect::transfer('posts');
     }
   }
 

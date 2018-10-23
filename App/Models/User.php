@@ -61,6 +61,19 @@ class User extends Model {
     }
   }
 
+
+  public function findUserById($user_id) {
+    $this->db->query("SELECT * FROM users WHERE id = :id");
+    $this->db->bind(":id", $user_id);
+    $row = $this->db->singleResult();
+
+    if ($this->db->rowCount() > 0) {
+      return $row;
+    } else {
+      return false;
+    }
+  }
+
   /**
    * Register user
    */

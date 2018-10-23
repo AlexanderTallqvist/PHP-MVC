@@ -42,6 +42,20 @@ class Post extends Model {
   }
 
 
+  public function getPostById($post_id) {
+    $this->db->query("SELECT * FROM posts where id = :id");
+    $this->db->bind(":id", $post_id);
+
+    $row = $this->db->singleResult();
+
+    if ($this->db->rowCount() > 0) {
+      return $row;
+    } else {
+      return false;
+    }
+  }
+
+
   public function validateTitle($title) {
     if (empty($title)) {
       return "Plase enter a title.";

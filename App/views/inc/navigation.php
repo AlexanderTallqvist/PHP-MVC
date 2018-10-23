@@ -10,8 +10,9 @@
     <?php endif ?>
   </ul>
   <div class="flas-container">
-    <div class="flas-container__register"><?php $messages::flashMessage('register_success') ?></div>
-    <div class="flas-container__login"><?php $messages::flashMessage('login_success') ?></div>
-    <div class="flas-container__post"><?php $messages::flashMessage('post_success') ?></div>
+    <div class="flas-container--register"><?php $messages::flashMessage('register_success') ?></div>
+    <div class="flas-container--login"><?php $messages::flashMessage('login_success') ?></div>
+    <div class="flas-container--post__success"><?php $messages::flashMessage('post_success') ?></div>
+    <div class="flas-container--post__not-found"><?php $messages::flashMessage('post_not_found') ?></div>
   </div>
 </nav>
