@@ -8,3 +8,6 @@ session_start();
 
 # INITIALIZE THE CORE LIBRARY
 $init = new App\Libraries\Core;
+
+# INITIALIZE THE FLASH MESSAGES
+$messages = new App\Helpers\Messages;

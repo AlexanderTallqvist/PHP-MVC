@@ -3,6 +3,8 @@
 namespace App\Controllers;
 
 use App\Libraries\View;
+use App\Models\User;
+use App\Helpers\Redirect;
 
 /**
  * @file
@@ -27,6 +29,10 @@ class Pages {
    * is specified in the URL.
    */
   public function index() {
+
+    if(User::isLoggedIn()) {
+      Redirect::transfer('posts');
+    }
 
     $data = [
       "title" => "PHP MVC PROJECT",

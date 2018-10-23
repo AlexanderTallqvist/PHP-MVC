@@ -19,7 +19,7 @@ class User extends Model {
   }
 
 
-  public function isLoggedIn() {
+  public static function isLoggedIn() {
     if (isset($_SESSION['user_id'])) {
       return true;
     } else {

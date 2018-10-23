@@ -10,7 +10,7 @@ namespace App\Helpers;
 
 class Redirect {
 
-  public static function transfer($page) {
+  public static function transfer($page = null) {
     header('location: ' . URLROOT . "/" . $page);
   }
 

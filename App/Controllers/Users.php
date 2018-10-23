@@ -100,9 +100,10 @@ class Users {
         $loggedInUser = $this->userModel->login($data['email'], $data['password']);
         if ($loggedInUser) {
           $this->userModel->createUserSession($loggedInUser);
-          Redirect::transfer('pages/index');
+          Messages::flashMessage('login_success', 'You have successfully logged in.');
+          Redirect::transfer('pages');
         } else {
-          $data['password_error'] = 'The email and password do not match.';
+          $data['password_error'] = 'Wrong username or password.';
           View::render('users/login', $data);
         }
       } else {

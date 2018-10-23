@@ -1,6 +1,5 @@
 <?php require APPROOT . "/views/inc/header.php"; ?>
   <div class="login-form">
-    <div class="login-form--flash"><?php $messages::flashMessage('register_success') ?></div>
     <h2 class="login-form--title">Login</h2>
     <p class="login-form--description">Please fill out the form below.</p>
     <form class="login-form--form" action="<?php echo URLROOT; ?>/users/login" method="post">
