@@ -104,4 +104,53 @@ class Posts {
     }
   }
 
+
+  public function edit($post_id) {
+
+    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+      $data = [
+        "post_id" => $post_id,
+        "title" => trim($_POST['title']),
+        "body" => trim($_POST['body']),
+        "user_id" => $_SESSION['user_id'],
+        "title_error" => "",
+        "body_error" => ""
+      ];
+
+      $data['title_error'] = $this->postModel->validateTitle($data['title']);
+      $data['body_error']  = $this->postModel->validateBody($data['body']);
+
+      if (empty($data['title_error']) && empty($data['body_error'])) {
+        if ($this->postModel->editPost($data)) {
+          Messages::flashMessage('post_edited', 'Post edited succesfully.');
+          Redirect::transfer('posts');
+        } else {
+          die('SOMETHING WENT WRONG');
+        }
+      } else {
+        View::render("posts/edit", $data);
+      }
+
+    } else {
+
+      $post = $this->postModel->getPostById($post_id);
+      if ($post === false || $post->user_id !== $_SESSION['user_id']) {
+        Redirect::transfer('posts');
+      } else {
+        $data = [
+          "title" => $post->title,
+          "body" => $post->body,
+          "post_id" => $post_id,
+          "title_error" => "",
+          "body_error" => ""
+        ];
+
+        View::render("posts/add", $data);
+      }
+    }
+  }
+
 }

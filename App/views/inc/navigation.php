@@ -14,5 +14,6 @@
     <div class="flas-container--login"><?php $messages::flashMessage('login_success') ?></div>
     <div class="flas-container--post__success"><?php $messages::flashMessage('post_success') ?></div>
     <div class="flas-container--post__not-found"><?php $messages::flashMessage('post_not_found') ?></div>
+    <div class="flas-container--post__edited"><?php $messages::flashMessage('post_edited') ?></div>
   </div>
 </nav>

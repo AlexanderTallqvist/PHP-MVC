@@ -42,6 +42,21 @@ class Post extends Model {
   }
 
 
+  public function editPost($data) {
+
+    $this->db->query("UPDATE posts SET title = :title, body = :body WHERE id = :id");
+    $this->db->bind(":id", $data['post_id']);
+    $this->db->bind(":title", $data['title']);
+    $this->db->bind(":body", $data['body']);
+
+    if ($this->db->execute()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
   public function getPostById($post_id) {
     $this->db->query("SELECT * FROM posts where id = :id");
     $this->db->bind(":id", $post_id);
