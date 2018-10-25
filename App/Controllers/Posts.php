@@ -148,7 +148,7 @@ class Posts {
           "body_error" => ""
         ];
 
-        View::render("posts/add", $data);
+        View::render("posts/edit", $data);
       }
     }
   }
