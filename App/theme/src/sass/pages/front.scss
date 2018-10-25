@@ -1,0 +1,53 @@
+.pages {
+
+  &--front {
+    // background: url('../img/front-bg.jpg');
+    // background-repeat: no-repeat;
+    // background-position: center;
+    // background-size: cover;
+    min-height: 700px;
+    position: relative;
+    text-align: center;
+
+    &__container {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      width: 800px;
+      padding: 30px;
+      border-radius: 20px;
+
+      &__title {
+        @include font("Lato", 55, 60, 300);
+        color: $white;
+        width: 100%;
+        text-transform: uppercase;
+        margin-bottom: 30px;
+      }
+
+      &__description {
+        @include font("Lato", 19, 27, 300);
+        color: $white;
+        width: 100%;
+        margin-bottom: 50px;
+      }
+
+      &__login {
+        @include font("Lato", 17, 21, 400);
+        @include button($dark_light_blue);
+        width: 40%;
+      }
+
+      &__register {
+        @include font("Lato", 17, 21, 400);
+        @include button($dark_green);
+        width: 40%;
+
+      }
+    }
+  }
+}

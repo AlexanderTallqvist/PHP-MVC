@@ -1,24 +1,39 @@
 
 // Main nav-bar styles
 .main-navigation {
-  max-width: 80%;
-  margin: 20px auto;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: $dark_blue;
+  padding: 20px 80px;
+  box-sizing: border-box;
+  border-bottom: 5px solid $gray_blue;
+
+  &--logo-container {
+    a.fa-ghost {
+      color: $white;
+
+      &:hover {
+        color: $light_blue;
+      }
+    }
+  }
 
   &--link-container {
     list-style: none;
     display: flex;
-    justify-content: flex-start;
-    padding: 0;
+    justify-content: center;
 
     &__link {
-      text-decoration: none;
-      color: green;
-      margin: 0 10px;
+      @include font("Lato", 15, 18, 700);
+      color: $white;
+      margin: 0 20px;
       text-transform: uppercase;
+      text-decoration: none;
 
       &:hover {
-        color: darken(green, 50);
+        color: $light_blue;
       }
     }
   }

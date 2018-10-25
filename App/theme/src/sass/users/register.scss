@@ -1,0 +1,31 @@
+.register-form {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 800px;
+  padding: 30px;
+  border-radius: 20px;
+
+  &--title {
+    @include font("Lato", 55, 60, 300);
+    color: $white;
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+  }
+
+  &--description {
+    @include font("Lato", 19, 27, 300);
+    color: $white;
+    width: 100%;
+    margin-bottom: 50px;
+  }
+
+  &--form {
+
+  }
+}

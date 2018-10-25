@@ -35,8 +35,10 @@ class Pages {
     }
 
     $data = [
-      "title" => "PHP MVC PROJECT",
-      'description' => "This is our description",
+      "title" => "Share A Thought",
+      'description' => "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece
+                        of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
+                        a Latin professor at Hampden-Sydney College.",
     ];
     //$test = new View;
     View::render("pages/index", $data);

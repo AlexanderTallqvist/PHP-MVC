@@ -1,21 +1,137 @@
+html, body,
+html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
 .layout-container {
-  max-width: 80%;
-  width: 100%;
-  margin: 0 auto; }
+  background-color: #484767;
+  height: 100vh;
+  position: relative; }
 
 .main-navigation {
-  max-width: 80%;
-  margin: 20px auto;
-  width: 100%; }
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #293541;
+  padding: 20px 80px;
+  box-sizing: border-box;
+  border-bottom: 5px solid #34404c; }
+  .main-navigation--logo-container a.fa-ghost {
+    color: #ffffff; }
+    .main-navigation--logo-container a.fa-ghost:hover {
+      color: #53bce8; }
   .main-navigation--link-container {
     list-style: none;
     display: flex;
-    justify-content: flex-start;
-    padding: 0; }
+    justify-content: center; }
     .main-navigation--link-container__link {
-      text-decoration: none;
-      color: green;
-      margin: 0 10px;
-      text-transform: uppercase; }
+      font-family: "Lato";
+      font-size: 15px;
+      line-height: 18px;
+      font-weight: 700;
+      color: #ffffff;
+      margin: 0 20px;
+      text-transform: uppercase;
+      text-decoration: none; }
       .main-navigation--link-container__link:hover {
-        color: black; }
+        color: #53bce8; }
+
+.pages--front {
+  min-height: 700px;
+  position: relative;
+  text-align: center; }
+  .pages--front__container {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 800px;
+    padding: 30px;
+    border-radius: 20px; }
+    .pages--front__container__title {
+      font-family: "Lato";
+      font-size: 55px;
+      line-height: 60px;
+      font-weight: 300;
+      color: #ffffff;
+      width: 100%;
+      text-transform: uppercase;
+      margin-bottom: 30px; }
+    .pages--front__container__description {
+      font-family: "Lato";
+      font-size: 19px;
+      line-height: 27px;
+      font-weight: 300;
+      color: #ffffff;
+      width: 100%;
+      margin-bottom: 50px; }
+    .pages--front__container__login {
+      font-family: "Lato";
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 400;
+      text-decoration: none;
+      color: #ffffff;
+      background: #3b87a6;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px #2e6880;
+      width: 40%; }
+      .pages--front__container__login:hover {
+        background: #347893; }
+      .pages--front__container__login:active {
+        box-shadow: 0px 3px #204a5b;
+        transform: translateY(3px); }
+    .pages--front__container__register {
+      font-family: "Lato";
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 400;
+      text-decoration: none;
+      color: #ffffff;
+      background: #199e84;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px #12725f;
+      width: 40%; }
+      .pages--front__container__register:hover {
+        background: #168872; }
+      .pages--front__container__register:active {
+        box-shadow: 0px 3px #0b463a;
+        transform: translateY(3px); }
+
+.register-form {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 800px;
+  padding: 30px;
+  border-radius: 20px; }
+  .register-form--title {
+    font-family: "Lato";
+    font-size: 55px;
+    line-height: 60px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 30px; }
+  .register-form--description {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    margin-bottom: 50px; }

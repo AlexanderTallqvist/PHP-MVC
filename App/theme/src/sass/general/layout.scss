@@ -1,7 +1,15 @@
 
 // General layoyt styles
+
+html, body,
+html * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .layout-container {
-  max-width: 80%;
-  width: 100%;
-  margin: 0 auto;
+  background-color: $purple;
+  height: 100vh;
+  position: relative;
 }

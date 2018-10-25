@@ -1,5 +1,25 @@
-@mixin transform($property) {
-  -webkit-transform: $property;
-      -ms-transform: $property;
-          transform: $property;
+@mixin font($family, $size, $line-hiehgt, $weight) {
+  font-family: $family;
+  font-size: $size + px;
+  line-height: $line-hiehgt + px;
+  font-weight: $weight;
+}
+
+@mixin button($background) {
+  text-decoration: none;
+  color: $white;
+  background: $background;
+  text-align: center;
+  padding: 10px 20px;
+  border-radius: 10px;
+  box-shadow: 0px 6px darken($background, 10%);
+
+  &:hover {
+    background: darken($background, 5%);
+  }
+
+  &:active {
+    box-shadow: 0px 3px darken($background, 20%);
+    transform: translateY(3px);
+  }
 }
