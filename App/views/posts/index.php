@@ -1,7 +1,7 @@
 <?php require APPROOT . "/views/inc/header.php"; ?>
   <div class="posts--main">
-    <h1 class="posts--main--title">Recent Posts</h1>
-    <a class="posts--main--add" href="<?php echo URLROOT; ?>/posts/add">Add post</a>
+    <h1 class="posts--main--title">Recent Thoughts</h1>
+    <a class="posts--main--add" href="<?php echo URLROOT; ?>/posts/add">Add a post</a>
     <div class="posts--main--list">
       <?php foreach($data['posts'] as $post) : ?>
         <div class="posts--main--list__item">
