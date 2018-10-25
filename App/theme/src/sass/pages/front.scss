@@ -37,14 +37,12 @@
       }
 
       &__login {
-        @include font("Lato", 17, 21, 400);
-        @include button($dark_light_blue);
+        @include button($light_blue);
         width: 40%;
       }
 
       &__register {
-        @include font("Lato", 17, 21, 400);
-        @include button($dark_green);
+        @include button($light_green);
         width: 40%;
 
       }

@@ -1,0 +1,75 @@
+.posts {
+
+  &--main {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+
+    &--title {
+      @include font("Lato", 55, 60, 300);
+      color: $white;
+      width: 100%;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+      width: 80%;
+    }
+
+    &--add {
+      @include button($light_blue);
+      margin-top: 20px;
+      height: 40px;
+    }
+
+    &--list {
+      width: 100%;
+      margin-top: 30px;
+
+      &__item {
+        padding: 30px;
+        border-radius: 5px;
+        background: $light_red;
+        border: 3px solid $gray_blue;
+        width: 100%;
+        margin-bottom: 20px;
+
+        &__title {
+          @include font("Lato", 35, 40, 700);
+          text-transform: uppercase;
+          color: $dark_blue;
+          margin-bottom: 25px;
+        }
+
+        &__author {
+          @include font("Lato", 16, 20, 400);
+          font-style: italic;
+          color: $gray;
+          display: block;
+          margin-bottom: 7px;
+        }
+
+        &__created {
+          @include font("Lato", 16, 20, 400);
+          font-style: italic;
+          color: $gray;
+          display: block;
+          margin-bottom: 25px;
+        }
+
+        &__content {
+          @include font("Lato", 16, 20, 400);
+          display: block;
+          margin-bottom: 30px;
+          color: $dark_blue;
+        }
+
+        &__more {
+          @include button($light_green);
+        }
+      }
+    }
+  }
+}
