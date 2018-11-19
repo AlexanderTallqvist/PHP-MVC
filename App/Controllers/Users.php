@@ -101,7 +101,7 @@ class Users {
         if ($loggedInUser) {
           $this->userModel->createUserSession($loggedInUser);
           Messages::flashMessage('login_success', 'You have successfully logged in.');
-          Redirect::transfer('pages');
+          Redirect::transfer('posts');
         } else {
           $data['password_error'] = 'Wrong username or password.';
           View::renderTwig('users/login', $data);

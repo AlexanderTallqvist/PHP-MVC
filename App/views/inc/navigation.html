@@ -1,15 +1,21 @@
 <nav class="main-navigation">
-  <div class="main-navigation--logo-container"><a class="fas fa-ghost fa-3x" href="{{ constant('URLROOT') }}"></a></div>
+  <div class="main-navigation--logo-container">
+    <a class="fas fa-ghost fa-3x" href="{{ constant('URLROOT') }}"></a>
+  </div>
   <ul class="main-navigation--link-container">
     <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/pages/about">About</a></li>
     {% if session.user_id %}
-      <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/logout">Log out</a></li>
+    <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/logout">Log out</a></li>
     {% else %}
-      <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/register">Register</a></li>
-      <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/login">Sign in</a></li>
+    <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/register">Register</a></li>
+    <li><a class="main-navigation--link-container__link" href="{{ constant('URLROOT') }}/users/login">Sign in</a></li>
     {% endif %}
   </ul>
 </nav>
-<div class="flash-container">
-
-</div>
+{% if messages is not empty %}
+  <div class="flash-container">
+    {% for message in messages %}
+    <div class="{{ message.class }}" id="{{ message.id }}">{{ message.content }}</div>
+    {% endfor %}
+  </div>
+{% endif %}

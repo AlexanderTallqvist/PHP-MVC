@@ -20,9 +20,17 @@ class Messages {
       } elseif (empty($message) && !empty($_SESSION[$name])) {
 
         $class = !empty($_SESSION[$name . '_class']) ? $_SESSION[$name . '_class'] : '';
-        echo '<div class="' . $class . '" id="msg-flash">' . $_SESSION[$name] . '</div>';
+
+        $message = [
+          'class' => $class,
+          'id' => 'msg-flash',
+          'content' => $_SESSION[$name],
+        ];
+
         unset($_SESSION[$name]);
         unset($_SESSION[$name . '_class']);
+
+        return $message;
       }
 
   }
