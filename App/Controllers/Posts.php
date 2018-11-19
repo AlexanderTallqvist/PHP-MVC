@@ -42,7 +42,7 @@ class Posts {
       'posts' => $posts,
     ];
 
-    View::render("posts/index", $data);
+    View::renderTwig("posts/index", $data);
   }
 
   public function add() {
@@ -70,7 +70,7 @@ class Posts {
           die('SOMETHING WENT WRONG');
         }
       } else {
-        View::render("posts/add", $data);
+        View::renderTwig("posts/add", $data);
       }
 
     } else {
@@ -81,7 +81,7 @@ class Posts {
         "body_error" => ""
       ];
 
-      View::render("posts/add", $data);
+      View::renderTwig("posts/add", $data);
     }
   }
 
@@ -96,7 +96,7 @@ class Posts {
         'post' => $post,
         'user' => $user
       ];
-      View::render("posts/show", $data);
+      View::renderTwig("posts/show", $data);
 
     } else {
       Messages::flashMessage('post_not_found', 'Post not found.');
@@ -131,7 +131,7 @@ class Posts {
           die('SOMETHING WENT WRONG');
         }
       } else {
-        View::render("posts/edit", $data);
+        View::renderTwig("posts/edit", $data);
       }
 
     } else {
@@ -148,7 +148,7 @@ class Posts {
           "body_error" => ""
         ];
 
-        View::render("posts/edit", $data);
+        View::renderTwig("posts/edit", $data);
       }
     }
   }

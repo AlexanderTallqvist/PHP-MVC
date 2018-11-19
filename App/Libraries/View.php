@@ -11,4 +11,16 @@ class View {
       die("View does not exist.");
     }
   }
+
+  public static function renderTwig($view, $data = []) {
+    static $twig = null;
+
+    if ($twig === null) {
+        $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
+        $twig = new \Twig_Environment($loader);
+        $twig->addGlobal('session', $_SESSION);
+    }
+
+    echo $twig->render($view . ".html", $data);
+  }
 }

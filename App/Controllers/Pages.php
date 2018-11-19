@@ -40,8 +40,8 @@ class Pages {
                         of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock,
                         a Latin professor at Hampden-Sydney College.",
     ];
-    //$test = new View;
-    View::render("pages/index", $data);
+
+    View::renderTwig("pages/index", $data);
   }
 
   /**
@@ -51,6 +51,6 @@ class Pages {
     $data = [
       "title" => "About Us"
     ];
-    View::render("pages/about", $data);
+    View::renderTwig("pages/about", $data);
   }
 }

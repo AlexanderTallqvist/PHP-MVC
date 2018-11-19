@@ -57,7 +57,7 @@ class Users {
         }
 
       } else {
-        View::render('users/register', $data);
+        View::renderTwig('users/register', $data);
       }
 
     } else {
@@ -71,7 +71,7 @@ class Users {
         'password_error' => '',
         'confirm_password_error' => '',
       ];
-      View::render("users/register", $data);
+      View::renderTwig("users/register", $data);
     }
   }
 
@@ -104,10 +104,10 @@ class Users {
           Redirect::transfer('pages');
         } else {
           $data['password_error'] = 'Wrong username or password.';
-          View::render('users/login', $data);
+          View::renderTwig('users/login', $data);
         }
       } else {
-        View::render('users/login', $data);
+        View::renderTwig('users/login', $data);
       }
 
     } else {
@@ -117,7 +117,7 @@ class Users {
         'email_error' => '',
         'password_error' => '',
       ];
-      View::render("users/login", $data);
+      View::renderTwig("users/login", $data);
     }
   }
 

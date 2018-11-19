@@ -1,0 +1,25 @@
+{% include  "./inc/header.html" %}
+  <div class="login-form">
+    <h2 class="login-form--title">Login</h2>
+    <p class="login-form--description">Please fill out the form below.</p>
+    <form class="login-form--form" action="{{ constant('URLROOT') }}/users/login" method="post">
+
+      <div class="login-form--form__group">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{ email }}" class="{{ (email_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ email_error }}</span>
+      </div>
+
+      <div class="login-form--form__group">
+        <label for="password">Password</label>
+        <input type="password" name="password" value="{{ password }}" class="{{ (password_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ password_error }}</span>
+      </div>
+
+      <div class="login-form--form__buttons">
+        <input class="login-form--form__buttons__register" type="submit" value="Login">
+        <a class="login-form--form__buttons__login" href="{{ constant('URLROOT') }}/users/register">Don't have an account?</a>
+      </div>
+    </form>
+  </div>
+{% include  "./inc/footer.html" %}

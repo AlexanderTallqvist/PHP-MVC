@@ -1,0 +1,37 @@
+{% include  "./inc/header.html" %}
+  <div class="register-form">
+    <h2 class="register-form--title">Sign Up</h2>
+    <p class="register-form--description">Please fill out the form below.</p>
+    <form class="register-form--form" action="{{ constant('URLROOT') }}/users/register" method="post">
+
+      <div class="register-form--form__group">
+        <label for="name">Name</label>
+        <input type="text" name="name" value="{{ name }}" class="{{ (name_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ name_error }}</span>
+      </div>
+
+      <div class="register-form--form__group">
+        <label for="email">Email</label>
+        <input type="email" name="email" value="{{ email }}" class="{{ (email_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ email_error }}</span>
+      </div>
+
+      <div class="register-form--form__group">
+        <label for="password">Password</label>
+        <input type="password" name="password" value="{{ password }}" class="{{ (password_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ password_error }}</span>
+      </div>
+
+      <div class="register-form--form__group">
+        <label for="confirm_password">Confirm password</label>
+        <input type="password" name="confirm_password" value="{{ confirm_password }}" class="{{ (confirm_password_error is empty) ? 'correct' : 'invalid' }}">
+        <span>{{ confirm_password_error }}</span>
+      </div>
+
+      <div class="register-form--form__buttons">
+        <input class="register-form--form__buttons__register" type="submit" value="Register">
+        <a class="register-form--form__buttons__login" href="{{ constant('URLROOT') }}/users/login">Have an account?</a>
+      </div>
+    </form>
+  </div>
+{% include  "./inc/footer.html" %}

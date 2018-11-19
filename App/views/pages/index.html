@@ -1,0 +1,12 @@
+{% include  "./inc/header.html" %}
+
+<div class="pages--front">
+  <div class="pages--front__container">
+    <h1 class="pages--front__container__title">{{ title }}</h1>
+    <p class="pages--front__container__description">{{ description }}</p>
+    <a class="pages--front__container__register" href="{{ constant('URLROOT') }}/users/register">Register</a>
+    <a class="pages--front__container__login" href="{{ constant('URLROOT') }}/users/login">Sign in</a>
+  </div>
+</div>
+
+{% include  "./inc/footer.html" %}
