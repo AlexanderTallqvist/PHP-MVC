@@ -3,15 +3,17 @@
     <a class="posts--show--back" href="{{ constant('URLROOT') }}/posts">Go Back</a>
     <div class="posts--show--container">
       <h1 class="posts--show--container__title">{{ post.title }}</h1>
-      <div class="posts--show--container__author">Author: {{ post.name }}</div>
+      <div class="posts--show--container__author">Author: {{ user.name }}</div>
       <div class="posts--show--container__created">Created: {{ post.created_date }}</div>
       <div class="posts--show--container__body">{{ post.body }}</div>
         {% if post.user_id == session.user_id %}
         <hr>
-        <a href="{{ constant('URLROOT') }}/posts/edit/{{ post.id }}" class="posts--show--container__edit">Edit this post</a>
-        <form class="posts--show--container__delete" action="{{ constant('URLROOT') }}/posts/delete/{{ post.id }}" method="post">
-          <input type="submit" value="Delete this post">
-        </form>
+        <div class="posts--show--container__buttons">
+          <a href="{{ constant('URLROOT') }}/posts/edit/{{ post.id }}" class="posts--show--container__buttons__edit">Edit this post</a>
+          <form class="posts--show--container__buttons__delete" action="{{ constant('URLROOT') }}/posts/delete/{{ post.id }}" method="post">
+            <input type="submit" value="Delete this post">
+          </form>
+        </div>
       {% endif %}
     </div>
   </div>

@@ -100,7 +100,7 @@ class Users {
         $loggedInUser = $this->userModel->login($data['email'], $data['password']);
         if ($loggedInUser) {
           $this->userModel->createUserSession($loggedInUser);
-          Messages::flashMessage('login_success', 'You have successfully logged in.');
+          Messages::flashMessage('login_success', 'You have successfully logged in.', 'message--success');
           Redirect::transfer('posts');
         } else {
           $data['password_error'] = 'Wrong username or password.';

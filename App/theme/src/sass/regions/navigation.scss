@@ -18,6 +18,12 @@
         color: $light_blue;
       }
     }
+
+    &__user-name {
+      @include font("Lato", 15, 18, 700);
+      color: $white;
+      margin-left: 40px;
+    }
   }
 
   &--link-container {

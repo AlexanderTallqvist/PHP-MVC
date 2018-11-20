@@ -1,0 +1,83 @@
+
+.posts {
+
+  &--show {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 70px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+
+    &--back {
+      @include font("Lato", 19, 27, 500);
+      color: $light_blue;
+      margin-bottom: 50px;
+      text-decoration: none;
+      position: absolute;
+      right: 0;
+      display: inline-flex;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    &--container {
+      padding: 30px;
+      border-radius: 5px;
+      background: $light_red;
+      border: 3px solid $gray_blue;
+      width: 100%;
+      margin-top: 50px;
+      margin-bottom: 20px;
+
+      &__title {
+        @include font("Lato", 35, 40, 700);
+        text-transform: uppercase;
+        color: $dark_blue;
+        margin-bottom: 25px;
+      }
+
+      &__author {
+        @include font("Lato", 16, 20, 400);
+        font-style: italic;
+        color: $gray;
+        display: block;
+        margin-bottom: 7px;
+      }
+
+      &__created {
+        @include font("Lato", 16, 20, 400);
+        font-style: italic;
+        color: $gray;
+        display: block;
+        margin-bottom: 25px;
+      }
+
+      &__body {
+        @include font("Lato", 16, 20, 400);
+        display: block;
+        margin-bottom: 30px;
+        color: $dark_blue;
+      }
+
+      &__buttons {
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 30px;
+
+        &__edit {
+          @include button($light_green);
+          margin-right: 30px;
+        }
+
+        &__delete input {
+          @include button($red);
+          border: none;
+        }
+      }
+    }
+  }
+}

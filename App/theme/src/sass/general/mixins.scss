@@ -41,7 +41,8 @@
     padding-left: 10px;
   }
 
-  input {
+  input,
+  textarea {
     @include font("Lato", 14, 17, 400);
     display: block;
     width: 100%;
