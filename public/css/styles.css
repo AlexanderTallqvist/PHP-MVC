@@ -58,6 +58,13 @@ html * {
     color: #ffffff; }
     .main-navigation--logo-container a.fa-ghost:hover {
       color: #53bce8; }
+  .main-navigation--logo-container__user-name {
+    font-family: "Lato";
+    font-size: 15px;
+    line-height: 18px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-left: 40px; }
   .main-navigation--link-container {
     list-style: none;
     display: flex;
@@ -281,6 +288,322 @@ html * {
           box-shadow: 0px 3px #0e6252;
           transform: translateY(3px); }
 
+.posts--show {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative; }
+  .posts--show--back {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 500;
+    color: #53bce8;
+    margin-bottom: 50px;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    display: inline-flex; }
+    .posts--show--back:hover {
+      text-decoration: underline; }
+  .posts--show--container {
+    padding: 30px;
+    border-radius: 5px;
+    background: #fef5f5;
+    border: 3px solid #34404c;
+    width: 100%;
+    margin-top: 50px;
+    margin-bottom: 20px; }
+    .posts--show--container__title {
+      font-family: "Lato";
+      font-size: 35px;
+      line-height: 40px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: #293541;
+      margin-bottom: 25px; }
+    .posts--show--container__author {
+      font-family: "Lato";
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+      font-style: italic;
+      color: #555555;
+      display: block;
+      margin-bottom: 7px; }
+    .posts--show--container__created {
+      font-family: "Lato";
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+      font-style: italic;
+      color: #555555;
+      display: block;
+      margin-bottom: 25px; }
+    .posts--show--container__body {
+      font-family: "Lato";
+      font-size: 16px;
+      line-height: 20px;
+      font-weight: 400;
+      display: block;
+      margin-bottom: 30px;
+      color: #293541; }
+    .posts--show--container__buttons {
+      display: flex;
+      justify-content: flex-start;
+      margin-top: 30px; }
+      .posts--show--container__buttons__edit {
+        font-family: "Lato";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 400;
+        display: inline-block;
+        text-decoration: none;
+        color: #ffffff;
+        background: #1abc9c;
+        text-align: center;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 6px #148f77;
+        cursor: pointer;
+        margin-right: 30px; }
+        .posts--show--container__buttons__edit:hover {
+          background: #17a689; }
+        .posts--show--container__buttons__edit:active {
+          box-shadow: 0px 3px #0e6252;
+          transform: translateY(3px); }
+      .posts--show--container__buttons__delete input {
+        font-family: "Lato";
+        font-size: 17px;
+        line-height: 21px;
+        font-weight: 400;
+        display: inline-block;
+        text-decoration: none;
+        color: #ffffff;
+        background: #fa625c;
+        text-align: center;
+        padding: 10px 20px;
+        border-radius: 10px;
+        box-shadow: 0px 6px #f8322b;
+        cursor: pointer;
+        border: none; }
+        .posts--show--container__buttons__delete input:hover {
+          background: #f94a43; }
+        .posts--show--container__buttons__delete input:active {
+          box-shadow: 0px 3px #e91007;
+          transform: translateY(3px); }
+
+.posts--edit {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative; }
+  .posts--edit--title {
+    font-family: "Lato";
+    font-size: 55px;
+    line-height: 60px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 20px; }
+  .posts--edit--description {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    margin-bottom: 50px; }
+  .posts--edit--back {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 500;
+    color: #53bce8;
+    margin-bottom: 50px;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    display: inline-flex; }
+    .posts--edit--back:hover {
+      text-decoration: underline; }
+  .posts--edit--form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%; }
+    .posts--edit--form__group {
+      text-align: left;
+      width: 45%;
+      margin-bottom: 30px;
+      width: 100%; }
+      .posts--edit--form__group label {
+        font-family: "Lato";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+        color: #ffffff;
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        padding-left: 10px; }
+      .posts--edit--form__group input,
+      .posts--edit--form__group textarea {
+        font-family: "Lato";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        border: 3px solid #34404c;
+        color: #293541; }
+        .posts--edit--form__group input:focus,
+        .posts--edit--form__group textarea:focus {
+          border: 3px solid #3b87a6; }
+      .posts--edit--form__group span {
+        font-family: "Lato";
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        color: #fa625c;
+        margin-top: 5px;
+        height: 10px;
+        display: block;
+        padding-left: 10px; }
+    .posts--edit--form__buttons__submit {
+      font-family: "Lato";
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 400;
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      background: #1abc9c;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px #148f77;
+      cursor: pointer;
+      border: none; }
+      .posts--edit--form__buttons__submit:hover {
+        background: #17a689; }
+      .posts--edit--form__buttons__submit:active {
+        box-shadow: 0px 3px #0e6252;
+        transform: translateY(3px); }
+
+.posts--add {
+  width: 80%;
+  margin: 0 auto;
+  padding-top: 70px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  position: relative; }
+  .posts--add--title {
+    font-family: "Lato";
+    font-size: 55px;
+    line-height: 60px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    text-transform: uppercase;
+    margin-bottom: 20px; }
+  .posts--add--description {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 300;
+    color: #ffffff;
+    width: 100%;
+    margin-bottom: 50px; }
+  .posts--add--back {
+    font-family: "Lato";
+    font-size: 19px;
+    line-height: 27px;
+    font-weight: 500;
+    color: #53bce8;
+    margin-bottom: 50px;
+    text-decoration: none;
+    position: absolute;
+    right: 0;
+    display: inline-flex; }
+    .posts--add--back:hover {
+      text-decoration: underline; }
+  .posts--add--form {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width: 100%; }
+    .posts--add--form__group {
+      text-align: left;
+      width: 45%;
+      margin-bottom: 30px;
+      width: 100%; }
+      .posts--add--form__group label {
+        font-family: "Lato";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+        color: #ffffff;
+        display: block;
+        margin-bottom: 5px;
+        text-transform: uppercase;
+        padding-left: 10px; }
+      .posts--add--form__group input,
+      .posts--add--form__group textarea {
+        font-family: "Lato";
+        font-size: 14px;
+        line-height: 17px;
+        font-weight: 400;
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 20px;
+        border: 3px solid #34404c;
+        color: #293541; }
+        .posts--add--form__group input:focus,
+        .posts--add--form__group textarea:focus {
+          border: 3px solid #3b87a6; }
+      .posts--add--form__group span {
+        font-family: "Lato";
+        font-size: 12px;
+        line-height: 15px;
+        font-weight: 400;
+        color: #fa625c;
+        margin-top: 5px;
+        height: 10px;
+        display: block;
+        padding-left: 10px; }
+    .posts--add--form__buttons__submit {
+      font-family: "Lato";
+      font-size: 17px;
+      line-height: 21px;
+      font-weight: 400;
+      display: inline-block;
+      text-decoration: none;
+      color: #ffffff;
+      background: #1abc9c;
+      text-align: center;
+      padding: 10px 20px;
+      border-radius: 10px;
+      box-shadow: 0px 6px #148f77;
+      cursor: pointer;
+      border: none; }
+      .posts--add--form__buttons__submit:hover {
+        background: #17a689; }
+      .posts--add--form__buttons__submit:active {
+        box-shadow: 0px 3px #0e6252;
+        transform: translateY(3px); }
+
 .register-form {
   position: absolute;
   top: 35%;
@@ -329,7 +652,8 @@ html * {
         margin-bottom: 5px;
         text-transform: uppercase;
         padding-left: 10px; }
-      .register-form--form__group input {
+      .register-form--form__group input,
+      .register-form--form__group textarea {
         font-family: "Lato";
         font-size: 14px;
         line-height: 17px;
@@ -340,7 +664,8 @@ html * {
         border-radius: 20px;
         border: 3px solid #34404c;
         color: #293541; }
-        .register-form--form__group input:focus {
+        .register-form--form__group input:focus,
+        .register-form--form__group textarea:focus {
           border: 3px solid #3b87a6; }
       .register-form--form__group span {
         font-family: "Lato";
@@ -448,7 +773,8 @@ html * {
         margin-bottom: 5px;
         text-transform: uppercase;
         padding-left: 10px; }
-      .login-form--form__group input {
+      .login-form--form__group input,
+      .login-form--form__group textarea {
         font-family: "Lato";
         font-size: 14px;
         line-height: 17px;
@@ -459,7 +785,8 @@ html * {
         border-radius: 20px;
         border: 3px solid #34404c;
         color: #293541; }
-        .login-form--form__group input:focus {
+        .login-form--form__group input:focus,
+        .login-form--form__group textarea:focus {
           border: 3px solid #3b87a6; }
       .login-form--form__group span {
         font-family: "Lato";
