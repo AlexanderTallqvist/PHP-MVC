@@ -1,6 +1,6 @@
 {% include  "./inc/header.html" %}
   <div class="posts--main">
-    <h1 class="posts--main--title">Recent Thoughts</h1>
+    <h1 class="posts--main--title">{{ title }}</h1>
     <a class="posts--main--add" href="{{ constant('URLROOT') }}/posts/add">Add a post</a>
     <div class="posts--main--list">
       {% for post in posts %}

@@ -5,20 +5,27 @@ namespace App\Libraries;
 
 /**
  * @file
- * The Core App Class.
+ * The Router App Class.
  * Creates the URL and loads the core controller
  * URL Format: /controller/method/parameter.
  */
 
-class Core {
+class Router {
 
-  /**
-   * The class constructor.
-   * Fetches URL data using getURL(), and uses said data
-   * to load controllers and their methods.
-   */
-   function __construct() {
+  public $allowed_routes = [];
+
+  public function addAllowedRoute($route) {
+    array_push($this->allowed_routes, $route);
+  }
+
+  public function verifyUrl($current_url) {
+
+  }
+
+  public function dispatch() {
     $url = $this->getUrl();
+
+    print_r($url);
 
     # Check if controller exists in the first URL parameter
     if (file_exists("../App/Controllers/" . ucwords($url[0]) . ".php")) {
@@ -50,6 +57,15 @@ class Core {
   }
 
   /**
+   * The class constructor.
+   * Fetches URL data using getURL(), and uses said data
+   * to load controllers and their methods.
+   */
+   function __construct() {
+
+   }
+
+  /**
    * The current controller class.
    * Default value: Pages
    */
@@ -79,6 +95,7 @@ class Core {
     if (isset($_GET['url'])) {
       $url = rtrim($_GET['url'], "/");
       $url = filter_var($url, FILTER_SANITIZE_URL);
+      echo $url;
       $url = explode("/", $url);
       return $url;
     }

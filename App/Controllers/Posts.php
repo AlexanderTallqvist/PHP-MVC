@@ -38,7 +38,7 @@ class Posts {
     $posts = $this->postModel->getPosts();
 
     $data = [
-      "title" => "Our posts page",
+      "title" => "Recent Thoughts",
       'posts' => $posts,
     ];
 
