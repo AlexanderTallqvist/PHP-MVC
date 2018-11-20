@@ -64,7 +64,7 @@ class Posts {
 
       if (empty($data['title_error']) && empty($data['body_error'])) {
         if ($this->postModel->addPost($data)) {
-          Messages::flashMessage('post_success', 'Post submitted.');
+          Messages::flashMessage('post_success', 'Post submitted.', 'message--success');
           Redirect::transfer('posts');
         } else {
           die('SOMETHING WENT WRONG');
@@ -99,7 +99,7 @@ class Posts {
       View::renderTwig("posts/show", $data);
 
     } else {
-      Messages::flashMessage('post_not_found', 'Post not found.');
+      Messages::flashMessage('post_not_found', 'Post not found.', 'message--warning');
       Redirect::transfer('posts');
     }
   }
@@ -125,7 +125,7 @@ class Posts {
 
       if (empty($data['title_error']) && empty($data['body_error'])) {
         if ($this->postModel->editPost($data)) {
-          Messages::flashMessage('post_edited', 'Post edited succesfully.');
+          Messages::flashMessage('post_edited', 'Post edited succesfully.', 'message--success');
           Redirect::transfer('posts');
         } else {
           die('SOMETHING WENT WRONG');
@@ -150,6 +150,27 @@ class Posts {
 
         View::renderTwig("posts/edit", $data);
       }
+    }
+  }
+
+  public function delete($post_id) {
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+      $post = $this->postModel->getPostById($post_id);
+
+      if ($post->user_id !== $_SESSION['user_id']) {
+        Redirect::transfer('posts');
+      }
+
+      if($this->postModel->deletePostById($post_id)) {
+        Messages::flashMessage('post_deleted', 'Post removed succesfully.', 'message--success');
+        Redirect::transfer('posts');
+      } else {
+        die('Error');
+      }
+
+    } else {
+      Redirect::transfer('posts');
     }
   }
 

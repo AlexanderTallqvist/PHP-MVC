@@ -10,7 +10,7 @@ namespace App\Helpers;
 
 class Messages {
 
-  public static function flashMessage($name = '', $message = '', $class = 'alert alert-success') {
+  public static function flashMessage($name = '', $message = '', $class = 'message--default') {
 
       if (!empty($name) && !empty($message) && empty($_SESSION[$name])) {
 
@@ -23,7 +23,7 @@ class Messages {
 
         $message = [
           'class' => $class,
-          'id' => 'msg-flash',
+          'id' => 'flash-message',
           'content' => $_SESSION[$name],
         ];
 

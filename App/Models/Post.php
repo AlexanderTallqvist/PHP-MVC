@@ -58,13 +58,25 @@ class Post extends Model {
 
 
   public function getPostById($post_id) {
-    $this->db->query("SELECT * FROM posts where id = :id");
+    $this->db->query("SELECT * FROM posts WHERE id = :id");
     $this->db->bind(":id", $post_id);
 
     $row = $this->db->singleResult();
 
     if ($this->db->rowCount() > 0) {
       return $row;
+    } else {
+      return false;
+    }
+  }
+
+
+  public function deletePostById($post_id) {
+    $this->db->query("DELETE FROM posts WHERE id = :id");
+    $this->db->bind(":id", $post_id);
+
+    if ($this->db->execute()) {
+      return true;
     } else {
       return false;
     }

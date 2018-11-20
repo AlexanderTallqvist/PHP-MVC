@@ -36,6 +36,7 @@ class View {
       'post_success',
       'post_not_found',
       'post_edited',
+      'post_deleted',
     ];
 
     $messages = [];

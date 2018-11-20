@@ -1,0 +1,1 @@
+!function(){"use strict";document.querySelector("#flash-container-close").onclick=function(c){document.querySelector(".flash-container").classList.add("hidden")}}();

@@ -1,0 +1,48 @@
+// Flash messages
+
+.flash-container {
+  position: relative;
+  height: 40px;
+
+  &.hidden {
+    display: none;
+  }
+
+  #flash-container-close {
+    position: absolute;
+    z-index: 200;
+    right: 20px;
+    top: 12px;
+    cursor: pointer;
+  }
+
+  .fa-window-close {
+    color: $white;
+  }
+}
+
+#flash-message {
+  @include font("Lato", 18, 22, 500);
+  color: $white;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  padding: 10px 20px;
+}
+
+.message {
+
+  &--default {
+    background: $light_blue;
+  }
+
+  &--success {
+    background: $light_green;
+  }
+
+  &--warning {
+    background: $red;
+  }
+}

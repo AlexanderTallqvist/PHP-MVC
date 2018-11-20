@@ -17,5 +17,6 @@
     {% for message in messages %}
     <div class="{{ message.class }}" id="{{ message.id }}">{{ message.content }}</div>
     {% endfor %}
+    <span id="flash-container-close" class="fa fa-window-close"></span>
   </div>
 {% endif %}

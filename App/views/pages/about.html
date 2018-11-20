@@ -1,5 +1,15 @@
 {% include  "./inc/header.html" %}
 
-<h1>{{ title }}</h1>
+<div class="pages--about">
+  <div class="pages--about--left">
+    <h1 class="pages--about--left__title">{{ title }}</h1>
+    <h1 class="pages--about--left__description">{{ description }}</h1>
+  </div>
+  <div class="pages--about--right">
+    <div class="pages--about--right__image">
+      <img src="{{ constant('URLROOT') }}/{{ img_url }}" alt="About us Image">
+    </div>
+  </div>
+</div>
 
 {% include  "./inc/footer.html" %}
