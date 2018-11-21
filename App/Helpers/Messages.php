@@ -53,6 +53,10 @@ class Messages {
       'message' => "You have successfully logged in.",
       'class' => 'message--success'
     ],
+    'route_not_found' => [
+      'message' => "The page you are looking for could not be found.",
+      'class' => 'message--default'
+    ],
   ];
 
 

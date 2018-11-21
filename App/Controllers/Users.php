@@ -43,6 +43,11 @@ class Users {
    */
   public function register() {
 
+    if (User::isLoggedIn()) {
+      Redirect::transfer('posts');
+      return;
+    }
+
     $METHOD = $_SERVER['REQUEST_METHOD'];
 
     switch ($METHOD) {
@@ -110,6 +115,11 @@ class Users {
    * @return void
    */
   public function login() {
+
+    if (User::isLoggedIn()) {
+      Redirect::transfer('posts');
+      return;
+    }
 
     $METHOD = $_SERVER['REQUEST_METHOD'];
 

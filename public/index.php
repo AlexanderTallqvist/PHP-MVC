@@ -1,7 +1,7 @@
 <?php
 
 # REQUIRE THE BOOTSTRAP FILE
-require_once "../app/bootstrap.php";
+require_once "../app/init.php";
 
 // Start our session
 session_start();

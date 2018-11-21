@@ -1,7 +1,7 @@
 <?php
 
 # LOAD CONFIGURATION
-require_once "config/config.php";
+require_once "config/settings.php";
 
 /**
  * Composer
