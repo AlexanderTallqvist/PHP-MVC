@@ -29,8 +29,8 @@ class View {
    * @return void
    */
   public static function render($view, $data = []) {
-    if (file_exists("../App/views/" . $view . ".php")) {
-      require_once("../App/views/" . $view . ".php");
+    if (file_exists("../App/Views/" . $view . ".php")) {
+      require_once("../App/Views/" . $view . ".php");
     } else {
       die("View does not exist.");
     }
@@ -53,7 +53,7 @@ class View {
     static $twig = null;
 
     if ($twig === null) {
-        $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/views');
+        $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/Views');
         $twig = new \Twig_Environment($loader);
         $twig->addGlobal('session', $_SESSION);
         $twig->addGlobal('messages', self::generateMessages());
