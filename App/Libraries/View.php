@@ -32,6 +32,7 @@ class View {
 
     $message_types = [
       'register_success',
+      'register_fail',
       'login_success',
       'post_success',
       'post_error',

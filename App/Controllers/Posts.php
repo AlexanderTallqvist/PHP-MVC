@@ -41,10 +41,10 @@ class Posts {
 
     if (!User::isLoggedIn()) {
       Redirect::transfer('users/login');
+    } else {
+      $this->postModel = new Post;
+      $this->userModel = new User;
     }
-
-    $this->postModel = new Post;
-    $this->userModel = new User;
   }
 
 

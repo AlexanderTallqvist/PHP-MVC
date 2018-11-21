@@ -44,11 +44,11 @@ class Pages {
 
     if (User::isLoggedIn()) {
       Redirect::transfer('posts');
+      
+    } else {
+      $data = $this->pageModel->getLandingPage();
+      View::renderTwig("pages/index", $data);
     }
-
-    $data = $this->pageModel->getLandingPage();
-
-    View::renderTwig("pages/index", $data);
   }
 
 

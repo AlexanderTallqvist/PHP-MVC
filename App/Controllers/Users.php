@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * The Users Controller.
+ *
+ * @author Alexander Tallqvist <xylidrm@hotmail.com>
+ */
+
+
 namespace App\Controllers;
 
 use App\Libraries\View;
@@ -7,12 +15,16 @@ use App\Models\User;
 use App\Helpers\Redirect;
 use App\Helpers\Messages;
 
-/**
- * @file
- * The Users Controller.
- */
 
 class Users {
+
+
+  /**
+   * Contains an instance of the User Model.
+   * @var User
+   */
+  private $userModel;
+
 
   /**
    * The class constructor.
@@ -21,114 +33,147 @@ class Users {
     $this->userModel = new User;
   }
 
+
   /**
    * The register method.
+   * Called @ /users/register
+   * Methods: GET, POST
+   *
+   * @return void
    */
   public function register() {
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $METHOD = $_SERVER['REQUEST_METHOD'];
 
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    switch ($METHOD) {
 
-      $data = [
-        'name' => trim($_POST['name']),
-        'email' => trim($_POST['email']),
-        'password' => trim($_POST['password']),
-        'confirm_password' => trim($_POST['confirm_password']),
-        'name_error' => '',
-        'email_error' => '',
-        'password_error' => '',
-        'confirm_password_error' => '',
-      ];
+      case 'POST':
 
-      $data['name_error'] = $this->userModel->validateName($data['name']);
-      $data['email_error'] = $this->userModel->validateEmail($data['email'], true);
-      $data['password_error'] = $this->userModel->validatePassword($data['password']);
-      $data['confirm_password_error'] = $this->userModel->validateConfirmPassword($data['password'], $data['confirm_password']);
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
-      if (empty($data['name_error']) && empty($data['email_error'])
-      && empty($data['password_error']) && empty($data['confirm_password_error'])) {
+        $data = [
+          'name' => trim($_POST['name']),
+          'email' => trim($_POST['email']),
+          'password' => trim($_POST['password']),
+          'confirm_password' => trim($_POST['confirm_password']),
+          'name_error' => '',
+          'email_error' => '',
+          'password_error' => '',
+          'confirm_password_error' => '',
+        ];
 
-        if ($this->userModel->registerUser($data)) {
-          Messages::flashMessage('register_success', 'You are registered and can now log in.');
-          Redirect::transfer('users/login');
+        $data = $this->userModel->validateRegisterForm($data);
+
+        if (empty($data['name_error']) && empty($data['email_error'])
+        && empty($data['password_error']) && empty($data['confirm_password_error'])) {
+
+          if ($this->userModel->registerUser($data)) {
+            Messages::flashMessage('register_success', 'You are registered and can now log in.', 'message--success');
+            Redirect::transfer('users/login');
+
+          } else {
+            Messages::flashMessage('register_fail', 'The registration could not be compleated.', 'message--warning');
+            Redirect::transfer('users/register');
+          }
+
         } else {
-          die("Something went wrong.");
+          View::renderTwig('users/register', $data);
         }
 
-      } else {
-        View::renderTwig('users/register', $data);
-      }
+        break;
 
-    } else {
-      $data = [
-        'name' => '',
-        'email' => '',
-        'password' => '',
-        'confirm_password' => '',
-        'name_error' => '',
-        'email_error' => '',
-        'password_error' => '',
-        'confirm_password_error' => '',
-      ];
-      View::renderTwig("users/register", $data);
+      default:
+
+        $data = [
+          'name' => '',
+          'email' => '',
+          'password' => '',
+          'confirm_password' => '',
+          'name_error' => '',
+          'email_error' => '',
+          'password_error' => '',
+          'confirm_password_error' => '',
+        ];
+
+        View::renderTwig("users/register", $data);
+
+        break;
     }
   }
 
 
   /**
    * The login method.
+   * Called @ /users/login
+   * Methods: GET, POST
+   *
+   * @return void
    */
   public function login() {
 
-    if ($_SERVER['REQUEST_METHOD'] == "POST") {
+    $METHOD = $_SERVER['REQUEST_METHOD'];
 
-      $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+    switch ($METHOD) {
 
-      $data = [
-        'email' => trim($_POST['email']),
-        'password' => trim($_POST['password']),
-        'email_error' => '',
-        'password_error' => '',
-      ];
+      case 'POST':
 
-      $data['email_error'] = $this->userModel->validateEmail($data['email']);
-      $data['password_error'] = $this->userModel->validatePassword($data['password']);
+        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
 
+        $data = [
+          'email' => trim($_POST['email']),
+          'password' => trim($_POST['password']),
+          'email_error' => '',
+          'password_error' => '',
+        ];
 
-      if (empty($data['email_error']) && empty($data['password_error'])) {
-        $loggedInUser = $this->userModel->login($data['email'], $data['password']);
-        if ($loggedInUser) {
-          $this->userModel->createUserSession($loggedInUser);
-          Messages::flashMessage('login_success', 'You have successfully logged in.', 'message--success');
-          Redirect::transfer('posts');
+        $data = $this->userModel->validateLoginForm($data);
+
+        if (empty($data['email_error']) && empty($data['password_error'])) {
+          $loggedInUser = $this->userModel->login($data['email'], $data['password']);
+
+          if ($loggedInUser) {
+            $this->userModel->createUserSession($loggedInUser);
+            Messages::flashMessage('login_success', 'You have successfully logged in.', 'message--success');
+            Redirect::transfer('posts');
+
+          } else {
+            $data = $this->userModel->invalidLogin($data);
+            View::renderTwig('users/login', $data);
+          }
+
         } else {
-          $data['password_error'] = 'Wrong username or password.';
           View::renderTwig('users/login', $data);
         }
-      } else {
-        View::renderTwig('users/login', $data);
-      }
 
-    } else {
-      $data = [
-        'email' => '',
-        'password' => '',
-        'email_error' => '',
-        'password_error' => '',
-      ];
-      View::renderTwig("users/login", $data);
+        break;
+
+      default:
+
+        $data = [
+          'email' => '',
+          'password' => '',
+          'email_error' => '',
+          'password_error' => '',
+        ];
+
+        View::renderTwig("users/login", $data);
+
+        break;
     }
+
   }
 
 
+  /**
+   * The logout method.
+   * Called @ /users/logout
+   * Methods: GET
+   *
+   * @return void
+   */
   public function logout() {
-    unset($_SESSION['user_id']);
-    unset($_SESSION['user_email']);
-    unset($_SESSION['user_name']);
-    session_destroy();
+    $this->userModel->destroyUserSession();
     Redirect::transfer('users/login');
   }
-
 
 }
