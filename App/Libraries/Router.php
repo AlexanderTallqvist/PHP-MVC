@@ -1,103 +1,130 @@
 <?php
-
 namespace App\Libraries;
 
 
-/**
- * @file
- * The Router App Class.
- * Creates the URL and loads the core controller
- * URL Format: /controller/method/parameter.
- */
-
-class Router {
-
-  public $allowed_routes = [];
-
-  public function addAllowedRoute($route) {
-    array_push($this->allowed_routes, $route);
-  }
-
-  public function verifyUrl($current_url) {
-
-  }
-
-  public function dispatch() {
-    $url = $this->getUrl();
-
-    print_r($url);
-
-    # Check if controller exists in the first URL parameter
-    if (file_exists("../App/Controllers/" . ucwords($url[0]) . ".php")) {
-      $this->currentController = ucwords($url[0]);
-      unset($url[0]);
+class Router
+{
+    /**
+     * Associative array of routes (the routing table)
+     * @var array
+     */
+    protected $routes = [];
+    /**
+     * Parameters from the matched route
+     * @var array
+     */
+    protected $params = [];
+    /**
+     * Add a route to the routing table
+     *
+     * @param string $route  The route URL
+     * @param array  $params Parameters (controller, action, etc.)
+     *
+     * @return void
+     */
+    public function addAllowedRoute($route, $params = [])
+    {
+        // Convert the route to a regular expression: escape forward slashes
+        $route = preg_replace('/\//', '\\/', $route);
+        // Convert variables with custom regular expressions e.g. {id:\d+}
+        $route = preg_replace('/\{([a-z]+):([^\}]+)\}/', '(?P<\1>\2)', $route);
+        // Add start and end delimiters, and case insensitive flag
+        $route = '/^' . $route . '$/i';
+        $this->routes[$route] = $params;
     }
+    /**
+     * Get all the routes from the routing table
+     *
+     * @return array
+     */
+    public function getRoutes()
+    {
+        return $this->routes;
+    }
+    /**
+     * Match the route to the routes in the routing table, setting the $params
+     * property if a route is found.
+     *
+     * @param string $url The route URL
+     *
+     * @return boolean  true if a match found, false otherwise
+     */
+    public function match($url)
+    {
+        foreach ($this->routes as $route => $params) {
+            if (preg_match($route, $url, $matches)) {
+                // Get named capture group values
+                foreach ($matches as $key => $match) {
+                    if (is_string($key)) {
+                        $params[$key] = $match;
+                    }
+                }
+                $this->params = $params;
+                return true;
+            }
+        }
+        return false;
+    }
+    /**
+     * Get the currently matched parameters
+     *
+     * @return array
+     */
+    public function getParams()
+    {
+        return $this->params;
+    }
+    /**
+     * Dispatch the route, creating the controller object and running the
+     * action method
+     *
+     * @param string $url The route URL
+     *
+     * @return void
+     */
+    public function dispatch() {
+      $url = $this->fetchUrl();
 
-    # Instanciate our controller class
-    $controller = "App\Controllers\\" . $this->currentController;
-    $this->currentController = new $controller;
-
-    # Check if a method exists in the second URL parameter
-    if (isset($url[1])) {
-      if (method_exists($this->currentController, $url[1])) {
-        $this->currentMethod = $url[1];
-        unset($url[1]);
+      if ($this->match($url)) {
+          $controller = $this->params['controller'];
+          $controller = 'App\Controllers\\' . $controller;
+          if (class_exists($controller)) {
+              $controller_object = new $controller($this->params);
+              $action = $this->params['action'];
+              if (array_key_exists('id', $this->params)) {
+                call_user_func_array([
+                  $controller_object,
+                  $action],
+                  [$this->params['id']]
+                );
+              } else {
+                $controller_object->$action();
+              }
+          } else {
+              die("Something went wrong.");
+          }
+      } else {
+          die("Something went wrong.");
       }
     }
 
-    # Fetch URL parameters for the requested method
-    $this->parameters = $url ? array_values($url) : [];
 
-    # Call class method with parameters
-    call_user_func_array([
-      $this->currentController,
-      $this->currentMethod],
-      $this->parameters
-    );
-  }
-
-  /**
-   * The class constructor.
-   * Fetches URL data using getURL(), and uses said data
-   * to load controllers and their methods.
-   */
-   function __construct() {
-
-   }
-
-  /**
-   * The current controller class.
-   * Default value: Pages
-   */
-  protected $currentController = "Pages";
-
-  /**
-   * The current method.
-   * Default value: index
-   */
-  protected $currentMethod = "index";
-
-  /**
-   * The URL parameters for the requested method.
-   * Default value: []
-   */
-  protected $parameters = [];
-
-  /**
-   * The getUrl function
-   * Extracts the URL values and escapes the values.
-   *
-   * @return array
-   * An array containing URL data, such as the requested
-   * controller, the method, and parameters.
-   */
-  public function getUrl() {
-    if (isset($_GET['url'])) {
-      $url = rtrim($_GET['url'], "/");
-      $url = filter_var($url, FILTER_SANITIZE_URL);
-      echo $url;
-      $url = explode("/", $url);
-      return $url;
+    /**
+     * The fetchUrl function
+     * Extracts the URL values and escapes the values.
+     *
+     * @return array
+     * An array containing URL data, such as the requested
+     * controller, the method, and parameters.
+     */
+    public function fetchUrl() {
+      if (isset($_GET['url'])) {
+        $url = rtrim($_GET['url'], "/");
+        $url = filter_var($url, FILTER_SANITIZE_URL);
+        return $url;
+      } else {
+        return "";
+      }
     }
-  }
+
 }

@@ -68,11 +68,11 @@ class Users {
         && empty($data['password_error']) && empty($data['confirm_password_error'])) {
 
           if ($this->userModel->registerUser($data)) {
-            Messages::flashMessage('register_success', 'You are registered and can now log in.', 'message--success');
+            Messages::flashMessage('register_success');
             Redirect::transfer('users/login');
 
           } else {
-            Messages::flashMessage('register_fail', 'The registration could not be compleated.', 'message--warning');
+            Messages::flashMessage('register_fail');
             Redirect::transfer('users/register');
           }
 
@@ -133,7 +133,7 @@ class Users {
 
           if ($loggedInUser) {
             $this->userModel->createUserSession($loggedInUser);
-            Messages::flashMessage('login_success', 'You have successfully logged in.', 'message--success');
+            Messages::flashMessage('login_success');
             Redirect::transfer('posts');
 
           } else {

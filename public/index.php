@@ -1,13 +1,15 @@
 <?php
 
-# REQUIRE OUR BOOTSTRAP FILE
+# REQUIRE THE BOOTSTRAP FILE
 require_once "../app/bootstrap.php";
 
 // Start our session
 session_start();
 
 # INITIALIZE THE CORE LIBRARY
-$route_registerer = new App\Libraries\RouterTest;
+$route_registerer = new App\Libraries\Router;
+
+# INITIALIZE ROUTES
 
 // Page routes
 $route_registerer->addAllowedRoute('', ['controller' => 'Pages', 'action' => 'index']);
@@ -26,15 +28,5 @@ $route_registerer->addAllowedRoute('posts/edit/{id:\d+}', ['controller' => 'Post
 $route_registerer->addAllowedRoute('posts/show/{id:\d+}', ['controller' => 'Posts', 'action' => 'show']);
 $route_registerer->addAllowedRoute('posts/delete/{id:\d+}', ['controller' => 'Posts', 'action' => 'delete']);
 
+# CALL OUR DISPATCHER
 $route_registerer->dispatch();
-
-# REGISTER OUR ROUTES
-// $router->addAllowedRoute([
-//   'path' => "",
-//   'controller' => "Pages",
-//   'action' => "index"
-// ]);
-//
-// $router->addAllowedRoute(['path' => "about", 'controller' => "Pages", 'action' => "about"]);
-//
-// $router->dispatch();

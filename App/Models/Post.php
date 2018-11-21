@@ -80,6 +80,8 @@ class Post extends Model {
    */
   public function editPost($data) {
 
+    # Make sure that the post exists
+
     $this->db->query("UPDATE posts SET title = :title, body = :body WHERE id = :id");
     $this->db->bind(":id", $data['post_id']);
     $this->db->bind(":title", $data['title']);
@@ -192,7 +194,7 @@ class Post extends Model {
       return "Plase enter a title.";
     }
 
-    if (strlen($body) > 150) {
+    if (strlen($title) > 150) {
       return "The title should not be longer than 150 characters.";
     }
   }

@@ -56,44 +56,10 @@ class View {
         $loader = new \Twig_Loader_Filesystem(dirname(__DIR__) . '/Views');
         $twig = new \Twig_Environment($loader);
         $twig->addGlobal('session', $_SESSION);
-        $twig->addGlobal('messages', self::generateMessages());
+        $twig->addGlobal('messages', Messages::getAllFlashMessages());
     }
 
     echo $twig->render($view . ".html", $data);
-  }
-
-
-  /**
-   * The generateMessages method.
-   * A method that fetches flash messages from the
-   * Message helper class.
-   *
-   * @return array $messages
-   * An array containing flash messages.
-   */
-  private function generateMessages() {
-
-    $message_types = [
-      'register_success',
-      'register_fail',
-      'login_success',
-      'post_success',
-      'post_error',
-      'post_not_found',
-      'post_edited',
-      'post_deleted',
-    ];
-
-    $messages = [];
-
-    foreach ($message_types as $type) {
-      $new_message = Messages::flashMessage($type);
-      if (!empty($new_message['content'])) {
-        array_push($messages, $new_message);
-      }
-    }
-
-    return $messages;
   }
 
 }

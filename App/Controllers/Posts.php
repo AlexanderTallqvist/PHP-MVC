@@ -41,6 +41,7 @@ class Posts {
 
     if (!User::isLoggedIn()) {
       Redirect::transfer('users/login');
+      exit;
     } else {
       $this->postModel = new Post;
       $this->userModel = new User;
@@ -97,11 +98,11 @@ class Posts {
         if (empty($data['title_error']) && empty($data['body_error'])) {
 
           if ($this->postModel->addPost($data)) {
-            Messages::flashMessage('post_success', 'Post submitted.', 'message--success');
+            Messages::flashMessage('post_success');
             Redirect::transfer('posts');
 
           } else {
-            Messages::flashMessage('post_error', 'Something went wrong.', 'message--warning');
+            Messages::flashMessage('post_error');
             Redirect::transfer('posts');
           }
 
@@ -151,7 +152,7 @@ class Posts {
       View::renderTwig("posts/show", $data);
 
     } else {
-      Messages::flashMessage('post_not_found', 'Post not found.', 'message--warning');
+      Messages::flashMessage('post_not_found');
       Redirect::transfer('posts');
     }
   }
@@ -175,32 +176,40 @@ class Posts {
 
       case 'POST':
 
-        $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+        $post = $this->postModel->getPostById($post_id);
 
-        $data = [
-          "post_id" => $post_id,
-          "title" => trim($_POST['title']),
-          "body" => trim($_POST['body']),
-          "user_id" => $this->userModel->getUserSessionId(),
-          "title_error" => "",
-          "body_error" => ""
-        ];
-
-        $data = $this->postModel->validateEditForm($data);
-
-        if (empty($data['title_error']) && empty($data['body_error'])) {
-
-          if ($this->postModel->editPost($data)) {
-            Messages::flashMessage('post_edited', 'Post edited succesfully.', 'message--success');
-            Redirect::transfer('posts');
-
-          } else {
-            Messages::flashMessage('post_error', 'Post could not be edited.', 'message--warning');
-            Redirect::transfer('posts');
-          }
+        if ($post === false || $post->user_id !== $this->userModel->getUserSessionId()) {
+          Messages::flashMessage('post_error');
+          Redirect::transfer('posts');
 
         } else {
-          View::renderTwig("posts/edit", $data);
+          $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+
+          $data = [
+            "post_id" => $post_id,
+            "title" => trim($_POST['title']),
+            "body" => trim($_POST['body']),
+            "user_id" => $this->userModel->getUserSessionId(),
+            "title_error" => "",
+            "body_error" => ""
+          ];
+
+          $data = $this->postModel->validateEditForm($data);
+
+          if (empty($data['title_error']) && empty($data['body_error'])) {
+
+            if ($this->postModel->editPost($data)) {
+              Messages::flashMessage('post_edited');
+              Redirect::transfer('posts');
+
+            } else {
+              Messages::flashMessage('post_error');
+              Redirect::transfer('posts');
+            }
+
+          } else {
+            View::renderTwig("posts/edit", $data);
+          }
         }
 
         break;
@@ -211,6 +220,7 @@ class Posts {
 
         if ($post === false || $post->user_id !== $this->userModel->getUserSessionId()) {
           Redirect::transfer('posts');
+
         } else {
           $data = [
             "title" => $post->title,
@@ -248,15 +258,16 @@ class Posts {
 
         $post = $this->postModel->getPostById($post_id);
 
-        if ($post->user_id !== $this->userModel->getUserSessionId) {
+        if ($post === false || $post->user_id !== $this->userModel->getUserSessionId()) {
+          Messages::flashMessage('post_error');
           Redirect::transfer('posts');
-        }
 
-        if ($this->postModel->deletePostById($post_id)) {
-          Messages::flashMessage('post_deleted', 'Post removed succesfully.', 'message--success');
+        } elseif (!empty($post) && $this->postModel->deletePostById($post_id)) {
+          Messages::flashMessage('post_deleted');
           Redirect::transfer('posts');
+
         } else {
-          Messages::flashMessage('post_deleted', 'Post could not be deleted.', 'message--warning');
+          Messages::flashMessage('post_error');
           Redirect::transfer('posts');
         }
 
@@ -264,6 +275,7 @@ class Posts {
 
       default:
         Redirect::transfer('posts');
+
         break;
     }
   }
