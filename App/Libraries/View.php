@@ -1,5 +1,13 @@
 <?php
 
+/**
+ * @file
+ * The Main View Class.
+ *
+ * @author Alexander Tallqvist <xylidrm@hotmail.com>
+ */
+
+
 namespace App\Libraries;
 
 use App\Helpers\Messages;
@@ -7,6 +15,19 @@ use App\Helpers\Messages;
 
 class View {
 
+
+  /**
+   * The render method.
+   * A method that renders data with a php template.
+   *
+   * @param string $view
+   * The php template that we want to use.
+   *
+   * @param array $data
+   * An array containing data that we want to render.
+   *
+   * @return void
+   */
   public static function render($view, $data = []) {
     if (file_exists("../App/views/" . $view . ".php")) {
       require_once("../App/views/" . $view . ".php");
@@ -15,6 +36,19 @@ class View {
     }
   }
 
+
+  /**
+   * The renderTwig method.
+   * A method that renders data with a twig template.
+   *
+   * @param string $view
+   * The php template that we want to use.
+   *
+   * @param array $data
+   * An array containing data that we want to render.
+   *
+   * @return void
+   */
   public static function renderTwig($view, $data = []) {
     static $twig = null;
 
@@ -28,6 +62,15 @@ class View {
     echo $twig->render($view . ".html", $data);
   }
 
+
+  /**
+   * The generateMessages method.
+   * A method that fetches flash messages from the
+   * Message helper class.
+   *
+   * @return array $messages
+   * An array containing flash messages.
+   */
   private function generateMessages() {
 
     $message_types = [

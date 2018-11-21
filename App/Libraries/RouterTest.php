@@ -102,13 +102,12 @@ class RouterTest
                 );
               } else {
                 $controller_object->$action();
-                  //throw new \Exception("Method $action in controller $controller cannot be called directly - remove the Action suffix to call this method");
               }
           } else {
-              throw new \Exception("Controller class $controller not found");
+              die("Something went wrong.");
           }
       } else {
-          throw new \Exception('No route matched.', 404);
+          die("Something went wrong.");
       }
     }
 

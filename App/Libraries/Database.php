@@ -1,17 +1,20 @@
 <?php
 
+/**
+ * @file
+ * The Main Database Class.
+ *
+ * @author Alexander Tallqvist <xylidrm@hotmail.com>
+ */
+
+
 namespace App\Libraries;
 
 use \PDO;
 
-/**
- * @file
- * The database class.
- * Used for fetching, inserting and updating data
- * in the database.
- */
 
  class Database {
+
 
  /**
   * The class constructor.
@@ -23,7 +26,6 @@ use \PDO;
       PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ];
 
-    # Create a new PDO instance
     try {
       $this->dbHandler = new PDO($dsn, $this->user, $this->password, $options);
     } catch (\PDOException $e) {
@@ -32,50 +34,61 @@ use \PDO;
     }
   }
 
+
  /**
   * The database host.
   */
   private $host = DB_HOST;
+
 
   /**
    * The database user.
    */
   private $user = DB_USER;
 
+
   /**
    * The database password.
    */
   private $password = DB_PASSWORD;
+
 
   /**
    * The database username.
    */
   private $dbname = DB_NAME;
 
+
   /**
    * The database handeler.
    */
   private $dbHandler;
+
 
   /**
    * The database statement.
    */
   private $statement;
 
+
   /**
    * The database error message.
    */
   private $error;
+
 
   /**
    * The main query method.
    *
    * @param  string $sql
    * An SQL query string.
+   *
+   * @return void
    */
   public function query($sql) {
     $this->statement = $this->dbHandler->prepare($sql);
   }
+
 
   /**
    * The bind method.
@@ -88,6 +101,8 @@ use \PDO;
    *
    * @param  string $type
    * The PDO type for the value.
+   *
+   * @return void
    */
   public function bind($param, $value, $type = null) {
 
@@ -109,6 +124,7 @@ use \PDO;
     }
     $this->statement->bindValue($param, $value, $type);
   }
+
 
   /**
    * The execute method.

@@ -1,15 +1,26 @@
 <?php
 
+/**
+ * @file
+ * The Main Model Class.
+ *
+ * @author Alexander Tallqvist <xylidrm@hotmail.com>
+ */
+ 
+
 namespace App\Libraries;
 
 use App\Libraries\Database;
 
-/**
- * @file
- * The Post Model.
- */
 
 class Model {
+
+  /**
+   * An instance of our database connection.
+   * @var PDO
+   */
+  protected $db;
+
 
   /**
    * The class constructor
@@ -17,10 +28,5 @@ class Model {
    function __construct() {
      $this->db = new Database;
    }
-
-  /**
-   * An instance of our database connection.
-   */
-  protected $db;
 
 }
