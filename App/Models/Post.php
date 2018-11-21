@@ -10,7 +10,6 @@
 
 namespace App\Models;
 
-
 use App\Libraries\Model;
 
 

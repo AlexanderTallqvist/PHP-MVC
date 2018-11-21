@@ -10,7 +10,6 @@
 
 namespace App\Controllers;
 
-
 use App\Libraries\View;
 use App\Models\User;
 use App\Models\Post;
