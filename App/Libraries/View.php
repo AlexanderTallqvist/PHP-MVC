@@ -34,6 +34,7 @@ class View {
       'register_success',
       'login_success',
       'post_success',
+      'post_error',
       'post_not_found',
       'post_edited',
       'post_deleted',

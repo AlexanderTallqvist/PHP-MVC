@@ -12,13 +12,6 @@ use App\Libraries\Model;
 class User extends Model {
 
 
-  public function createUserSession($user) {
-    $_SESSION['user_id'] = $user->id;
-    $_SESSION['user_email'] = $user->email;
-    $_SESSION['user_name'] = $user->name;
-  }
-
-
   public static function isLoggedIn() {
     if (isset($_SESSION['user_id'])) {
       return true;
@@ -27,6 +20,19 @@ class User extends Model {
     }
   }
 
+
+  public function createUserSession($user) {
+    $_SESSION['user_id'] = $user->id;
+    $_SESSION['user_email'] = $user->email;
+    $_SESSION['user_name'] = $user->name;
+  }
+
+
+  public function getUserSessionId() {
+    if (isset($_SESSION['user_id'])) {
+      return $_SESSION['user_id'];
+    }
+  }
 
   /**
    * Login user
