@@ -10,7 +10,7 @@
 
 namespace App\Models;
 
-use App\Libraries\Model;
+use App\Core\Model;
 
 
 class Post extends Model {

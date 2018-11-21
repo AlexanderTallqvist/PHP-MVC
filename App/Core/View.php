@@ -8,7 +8,7 @@
  */
 
 
-namespace App\Libraries;
+namespace App\Core;
 
 use App\Helpers\Messages;
 

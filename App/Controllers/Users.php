@@ -10,7 +10,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\View;
+use App\Core\View;
 use App\Models\User;
 use App\Helpers\Redirect;
 use App\Helpers\Messages;

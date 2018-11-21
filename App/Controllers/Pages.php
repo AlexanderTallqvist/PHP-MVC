@@ -10,7 +10,7 @@
 
 namespace App\Controllers;
 
-use App\Libraries\View;
+use App\Core\View;
 use App\Models\User;
 use App\Models\Page;
 use App\Helpers\Redirect;
@@ -44,7 +44,7 @@ class Pages {
 
     if (User::isLoggedIn()) {
       Redirect::transfer('posts');
-      
+
     } else {
       $data = $this->pageModel->getLandingPage();
       View::renderTwig("pages/index", $data);

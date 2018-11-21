@@ -6,11 +6,11 @@
  *
  * @author Alexander Tallqvist <xylidrm@hotmail.com>
  */
- 
 
-namespace App\Libraries;
 
-use App\Libraries\Database;
+namespace App\Core;
+
+use App\Core\Database;
 
 
 class Model {

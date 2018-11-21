@@ -7,7 +7,7 @@ require_once "../app/bootstrap.php";
 session_start();
 
 # INITIALIZE THE CORE LIBRARY
-$route_registerer = new App\Libraries\Router;
+$route_registerer = new App\Core\Router;
 
 # INITIALIZE ROUTES
 
