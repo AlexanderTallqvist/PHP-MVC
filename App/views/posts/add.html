@@ -13,7 +13,7 @@
 
       <div class="posts--add--form__group">
         <label for="body">Body</label>
-        <textarea name="body" class="{{ (body_error is empty) ? 'correct' : 'invalid' }}">{{ body }}</textarea>
+        <textarea name="body" class="{{ (body_error is empty) ? 'correct' : 'invalid' }}">{{ body|raw }}</textarea>
         <span>{{ body_error }}</span>
       </div>
 

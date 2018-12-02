@@ -5,7 +5,7 @@
       <h1 class="posts--show--container__title">{{ post.title }}</h1>
       <div class="posts--show--container__author">Author: {{ user.name }}</div>
       <div class="posts--show--container__created">Created: {{ post.created_date|date("d.m.Y") }}</div>
-      <div class="posts--show--container__body">{{ post.body }}</div>
+      <div class="posts--show--container__body">{{ post.body|raw }}</div>
         {% if post.user_id == session.user_id %}
         <hr>
         <div class="posts--show--container__buttons">

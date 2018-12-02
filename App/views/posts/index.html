@@ -8,7 +8,7 @@
           <h2 class="posts--main--list__item__title">{{ post.title }}</h2>
           <span class="posts--main--list__item__author"><span>Author:</span> {{ post.name }}</span>
           <span class="posts--main--list__item__created"><span>Created:</span> {{ post.postCreated|date("d.m.Y") }}</span>
-          <div class="posts--main--list__item__content">{{ post.body }}</div>
+          <div class="posts--main--list__item__content">{{ post.body|raw }}</div>
           <a href="{{ constant('URLROOT') }}/posts/show/{{ post.postId }}" class="posts--main--list__item__more">Read more</a>
         </div>
       {% endfor %}
